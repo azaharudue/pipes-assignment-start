@@ -1,12 +1,16 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'sort'
+  name: "sort",
 })
 export class SortPipe implements PipeTransform {
-
-  transform(value: any, ...args: any[]): any {
-    return null;
+  transform(value: any[], sortingString: string): any {
+    return value.sort((a, b) => {
+      return a[sortingString] > b[sortingString]
+        ? 1
+        : a[sortingString] === b[sortingString]
+        ? 0
+        : -1;
+    });
   }
-
 }
